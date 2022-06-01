@@ -58,3 +58,47 @@ console.log(pockets.pen) // 3
 
 // Быстее свойство glasses можно получить через head, нежели чем через pockets, потому что glasses является непосредственно
 // свойством обьекта head, а pockets получает его из своего прототипа 
+
+// 3.
+// Объект rabbit наследует от объекта animal.
+// Какой объект получит свойство full при вызове rabbit.eat(): animal или rabbit?
+
+const animal1 = {
+    eat() {
+        this.full = true
+    }
+}
+
+const rabbit1 = {
+    __proto__: animal1,
+}
+
+rabbit1.eat()
+console.log(animal1, rabbit1)
+
+// При вызове функции у rabbit обьект rabbit получит свойство full, с обьектом animal ничего не произойдет в этот момент
+
+// 4.
+// У нас есть два хомяка: шустрый (speedy) и ленивый (lazy); оба наследуют от общего объекта hamster.
+// Когда мы кормим одного хомяка, второй тоже наедается. Почему? Как это исправить
+
+const hamster = {
+    stomach: [],
+    eat(food) {
+        this.stomach = food
+    }
+}
+
+const lazy = {
+    __proto__: hamster,
+}
+
+
+const speedy = {
+    __proto__: hamster,
+}
+
+lazy.eat('Яблоко')
+speedy.eat('Банан')
+
+console.log(lazy, speedy, hamster)
